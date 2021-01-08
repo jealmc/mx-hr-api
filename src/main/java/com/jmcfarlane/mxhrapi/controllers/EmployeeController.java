@@ -11,8 +11,12 @@ import java.util.List;
 
 @RestController
 public class EmployeeController {
-    @Autowired
     EmployeeRepository repository;
+
+    @Autowired
+    public EmployeeController(EmployeeRepository repository){
+        this.repository = repository;
+    }
 
     @GetMapping("/employees")
     List<Employee> all() {

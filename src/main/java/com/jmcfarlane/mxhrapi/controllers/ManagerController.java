@@ -16,8 +16,12 @@ import java.util.stream.StreamSupport;
 
 @RestController
 public class ManagerController {
+    private ManagerRepository repository;
+
     @Autowired
-    ManagerRepository repository;
+    public ManagerController(ManagerRepository repository){
+        this.repository = repository;
+    }
 
     @GetMapping("/managers")
     Set<Manager> all() {

@@ -1,6 +1,7 @@
 package com.jmcfarlane.mxhrapi.controllers;
 
 import com.jmcfarlane.mxhrapi.pojos.Manager;
+import com.jmcfarlane.mxhrapi.repos.EmployeeRepository;
 import com.jmcfarlane.mxhrapi.repos.ManagerRepository;
 import com.jmcfarlane.mxhrapi.repos.TeamMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,12 @@ import java.util.stream.StreamSupport;
 
 @RestController
 public class TeamMemberController {
-    @Autowired
     TeamMemberRepository repository;
+
+    @Autowired
+    public TeamMemberController(TeamMemberRepository repository){
+        this.repository = repository;
+    }
 
     @PostMapping("/team-member")
     Manager createNew(@RequestBody Manager manager) {
