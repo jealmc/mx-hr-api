@@ -25,4 +25,11 @@ public class ManagerService {
             return new HashSet<>();
         return repository.findByManagerId(managerId);
     }
+
+    public void deleteTeamMemberManager(String managerId){
+        repository.findByManagerId(managerId).forEach(member -> {
+            member.setManagerId(null);
+            repository.save(member);
+        });
+    }
 }

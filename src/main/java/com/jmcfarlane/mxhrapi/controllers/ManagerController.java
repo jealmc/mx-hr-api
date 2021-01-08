@@ -60,6 +60,7 @@ public class ManagerController {
 
     @DeleteMapping("/manager/{id}")
     void deleteEmployee(@PathVariable String id) {
+        service.deleteTeamMemberManager(id);
         repository.deleteById(id);
     }
 
