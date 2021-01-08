@@ -1,8 +1,8 @@
 package com.jmcfarlane.mxhrapi;
 
-class GenericNotFoundException extends RuntimeException {
+public class GenericNotFoundException extends RuntimeException {
 
-    GenericNotFoundException(String objectType) {
+    public GenericNotFoundException(String objectType) {
         super("Could not find " + objectType);
     }
 }
