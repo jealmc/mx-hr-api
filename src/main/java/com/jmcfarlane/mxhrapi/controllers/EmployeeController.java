@@ -12,12 +12,12 @@ import java.util.List;
 @RestController
 public class EmployeeController {
     @Autowired
-    EmployeeRepository employeeRepository;
+    EmployeeRepository repository;
 
     @GetMapping("/employees")
     List<Employee> all() {
         List<Employee> employees = new ArrayList<>();
-        employeeRepository.findAll().forEach(employees::add);
+        repository.findAll().forEach(employees::add);
         return employees;
     }
 }

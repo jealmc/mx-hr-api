@@ -12,7 +12,7 @@ class NotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(GenericNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(GenericNotFoundException ex) {
+    String notFoundHandler(GenericNotFoundException ex) {
         return ex.getMessage();
     }
 }

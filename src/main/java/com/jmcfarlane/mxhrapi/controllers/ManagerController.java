@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -19,17 +17,17 @@ import java.util.stream.StreamSupport;
 @RestController
 public class ManagerController {
     @Autowired
-    ManagerRepository managerRepository;
+    ManagerRepository repository;
 
     @GetMapping("/managers")
     Set<Manager> all() {
         return StreamSupport
-                .stream(managerRepository.findAll().spliterator(), false)
+                .stream(repository.findAll().spliterator(), false)
                 .collect(Collectors.toSet());
     }
 
     @PostMapping("/manager")
     Manager createNew(@RequestBody Manager manager) {
-        return managerRepository.save(manager);
+        return repository.save(manager);
     }
 }
