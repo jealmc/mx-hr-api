@@ -5,7 +5,6 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 
-@RedisHash("Employees")
 public class Employee implements Serializable {
     @Id
     public String id;
