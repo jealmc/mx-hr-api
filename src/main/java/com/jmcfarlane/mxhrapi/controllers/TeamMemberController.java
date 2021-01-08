@@ -3,6 +3,7 @@ package com.jmcfarlane.mxhrapi.controllers;
 import com.jmcfarlane.mxhrapi.GenericNotFoundException;
 import com.jmcfarlane.mxhrapi.pojos.TeamMember;
 import com.jmcfarlane.mxhrapi.repos.TeamMemberRepository;
+import com.jmcfarlane.mxhrapi.services.TeamMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +14,12 @@ import java.util.stream.StreamSupport;
 @RestController
 public class TeamMemberController {
     TeamMemberRepository repository;
+    TeamMemberService service;
 
     @Autowired
-    public TeamMemberController(TeamMemberRepository repository){
+    public TeamMemberController(TeamMemberRepository repository, TeamMemberService service){
         this.repository = repository;
+        this.service = service;
     }
 
     @GetMapping("/team-members")
@@ -37,7 +40,7 @@ public class TeamMemberController {
                 .map(employee -> {
                     employee.setFirstName(teamMember.getFirstName());
                     employee.setLastName(teamMember.getLastName());
-                    employee.setManager(teamMember.getManager());
+                    employee.setManager(service.updateManager(teamMember.getManager()));
                     return repository.save(employee);
                 })
                 .orElseGet(() -> {

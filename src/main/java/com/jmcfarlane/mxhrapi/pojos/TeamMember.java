@@ -1,5 +1,8 @@
 package com.jmcfarlane.mxhrapi.pojos;
 
+import com.jmcfarlane.mxhrapi.controllers.ManagerController;
+import com.jmcfarlane.mxhrapi.repos.ManagerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
@@ -12,7 +15,7 @@ public class TeamMember extends Employee implements Serializable {
         return manager;
     }
 
-    public void setManager(Manager manager) {
-        this.manager = manager;
+    public void setManager(Manager newManager) {
+        this.manager = newManager;
     }
 }
