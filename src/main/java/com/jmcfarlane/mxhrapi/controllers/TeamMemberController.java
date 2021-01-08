@@ -1,11 +1,8 @@
 package com.jmcfarlane.mxhrapi.controllers;
 
-import com.jmcfarlane.mxhrapi.pojos.Manager;
-import com.jmcfarlane.mxhrapi.repos.EmployeeRepository;
-import com.jmcfarlane.mxhrapi.repos.ManagerRepository;
+import com.jmcfarlane.mxhrapi.pojos.TeamMember;
 import com.jmcfarlane.mxhrapi.repos.TeamMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +21,7 @@ public class TeamMemberController {
     }
 
     @PostMapping("/team-member")
-    Manager createNew(@RequestBody Manager manager) {
-        return repository.save(manager);
+    TeamMember createNew(@RequestBody TeamMember teamMember) {
+        return repository.save(teamMember);
     }
 }
