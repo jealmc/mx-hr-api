@@ -1,21 +1,20 @@
 package com.jmcfarlane.mxhrapi.pojos;
 
-import com.jmcfarlane.mxhrapi.controllers.ManagerController;
-import com.jmcfarlane.mxhrapi.repos.ManagerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
 
 @RedisHash("TeamMembers")
 public class TeamMember extends Employee implements Serializable {
-    public Manager manager;
+    @Indexed
+    public String managerId;
 
-    public Manager getManager() {
-        return manager;
+    public String getManagerId() {
+        return managerId;
     }
 
-    public void setManager(Manager newManager) {
-        this.manager = newManager;
+    public void setManagerId(String managerId) {
+        this.managerId = managerId;
     }
 }

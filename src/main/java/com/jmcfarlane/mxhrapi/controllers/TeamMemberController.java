@@ -40,7 +40,8 @@ public class TeamMemberController {
                 .map(employee -> {
                     employee.setFirstName(teamMember.getFirstName());
                     employee.setLastName(teamMember.getLastName());
-                    employee.setManager(service.updateManager(teamMember.getManager()));
+                    employee.setManagerId(teamMember.getManagerId());
+                    service.updateManager(teamMember, employee.getId());
                     return repository.save(employee);
                 })
                 .orElseGet(() -> {

@@ -36,8 +36,4 @@ public class Employee implements Serializable {
         this.lastName = lastName;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
-    }
 }

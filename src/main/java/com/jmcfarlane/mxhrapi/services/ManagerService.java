@@ -6,22 +6,23 @@ import com.jmcfarlane.mxhrapi.repos.TeamMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
-public class TeamMemberService {
+public class ManagerService {
     TeamMemberRepository repository;
     ManagerRepository managerRepository;
 
     @Autowired
-    public TeamMemberService(TeamMemberRepository repository, ManagerRepository managerRepository){
+    public ManagerService(TeamMemberRepository repository, ManagerRepository managerRepository){
         this.repository = repository;
         this.managerRepository = managerRepository;
     }
 
-    public void updateManager(TeamMember teamMember, String managerId){
-        managerRepository.findById(managerId)
-                .ifPresent(employee -> {
-                    employee.addTeamMember(teamMember);
-                    managerRepository.save(employee);
-                });
+    public Set<TeamMember> updateTeamMembers(String managerId){
+        if(managerId == null || managerId.isEmpty())
+            return new HashSet<>();
+        return repository.findByManagerId(managerId);
     }
 }
